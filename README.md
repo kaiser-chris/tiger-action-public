@@ -23,3 +23,46 @@ To use the github-action in another of your repositories, you will need to do th
  - First, you will need to create an access token for the repository this [guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) can help you. I recommend using a fine-grained token that can only access the repositories' contents as read-only.
  - Then you need to add the token to your mod repository as a workflow secret like described in this [guide](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
  - Lastly, you will need to set up the validation as workflow. Here is an [example](https://github.com/kaiser-chris/gate-mod/blob/master/.github/workflows/validate.yml) from my own mod where I run the validation on pull-requests and on commits on master. The Community Mod Framework part is an example of how to work with dependencies
+
+## Example Workflow
+This example validates every pull request and commits into the main branch:
+```
+name: Validation
+permissions:
+  contents: read
+  packages: write
+  checks: write
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: 'true'
+
+      - name: Checkout Validation
+        uses: actions/checkout@v4
+        with:
+          repository: your-github-name/tiger-action-repository
+          ref: 'main'
+          path: 'validation'
+          token: ${{ secrets.VALIDATION_TOKEN }}
+
+      - name: Validate
+        uses: ./validation/
+        with:
+          mod-directory: 'mod'
+          action-directory: 'validation'
+          game: 'vic3' # Also supports ck3
+```
