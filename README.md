@@ -13,8 +13,8 @@ To set this github-action up for yourself, you will need to do the following ste
 
  - First, you need to download the repository as a whole
  - Next, create a new **PRIVATE** repository on GitHub and upload the downloaded files into it
- - Then you copy the whole of your own game files into the `vic3` folder
- - So you do not need to upload all game files, you will then need to run the [clean-vic3.sh](clean-vic3.sh) script (On windows I recommend using WSL)
+ - Then you copy the whole of your own game files into the `vic3` or `ck3` (depending on which game you want to validate) folder
+ - So you do not need to upload all game files, you will then need to run the [clean-vic3.sh](clean-vic3.sh) or [clean-ck3.sh](clean-ck3.sh) script (On windows I recommend using WSL)
  - Finally, you can commit the stripped down game files into your **PRIVATE** repository
 
 ## Usage
