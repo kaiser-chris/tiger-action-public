@@ -1,0 +1,17 @@
+name: 'vic3-tiger'
+description: 'Validate Victoria 3 mods using ck3-tiger'
+inputs:
+  mod-directory:
+    description: 'Defines where your mod located inside the repository'
+    required: false
+    default: '.'
+  action-directory:
+    description: 'Defines where this action is located inside the repository'
+    required: false
+    default: '.'
+runs:
+  using: "composite"
+  steps:
+    - name: Validate Mod
+      run: ${{ inputs.action-directory }}/validate.sh ${{ inputs.mod-directory }} ${{ inputs.action-directory }}
+      shell: sh
