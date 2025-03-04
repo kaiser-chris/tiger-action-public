@@ -1,6 +1,8 @@
 # Overview
 
-This github-action can be used to validate Victoria 3 mod files.
+This github-action can be used to validate Victoria 3 mod files using [ck3-tiger](https://github.com/amtep/ck3-tiger).
+
+ck3-tiger is developed by [amtep](https://github.com/amtep).
 
 **NOTE: This action is incomplete and needs to be set up before it can be used.
 This is because of copyright issues with publishing game files on the internet.
