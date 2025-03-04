@@ -9,6 +9,14 @@ inputs:
     description: 'Defines where this action is located inside the repository'
     required: false
     default: '.'
+  game:
+    description: 'Defines game used to verify'
+    required: false
+    default: 'vic3'
+    type: choice
+    options:
+      - ck3
+      - vic3
 runs:
   using: "composite"
   steps:
