@@ -24,8 +24,8 @@ To set this GitHub Action up for yourself, you will need to do the following ste
   
 5. **Commit and Push**
    - Finally, commit and push the stripped-down game files into your **PRIVATE** repository.
-   - **Optional Step: Use `add_files.sh` to Commit and Push Files**
-     - If you have a large number of files (CK3 is >30k files) to commit and push, use the `add_files.sh` script to make it easier. This script commits a maximum of 100 files at a time and ensures that each commit does not exceed 100 Mb to avoid timeout issues.
+   - **Optional Step: Use `add-files.sh` to Commit and Push Files**
+     - If you have a large number of files (CK3 is >30k files) to commit and push, use the [add-files.sh](add-files.sh) script to make it easier. This script commits a maximum of 100 files at a time and ensures that each commit does not exceed 100 Mb to avoid timeout issues.
 
 ## Usage
 
@@ -66,6 +66,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        # If your repository uses lfs include this property
         with:
           lfs: 'true'
 
@@ -75,11 +76,16 @@ jobs:
           repository: your-github-name/tiger-action-repository
           ref: 'main'
           path: 'validation'
+          # Validation token defined in the usage instructions
           token: ${{ secrets.VALIDATION_TOKEN }}
 
       - name: Validate
         uses: ./validation/
         with:
+          # Relative path to the mod directory from repository root (defaults to repository root directory)
           mod-directory: 'mod'
+          # Relative path to the validation action repository root (defaults to repository root directory)
           action-directory: 'validation'
-          game: 'vic3' # Also supports ck3
+          # Which game files should be used for validation (ck3 or vic3 but defaults to vic3) 
+          game: 'vic3'
+```
