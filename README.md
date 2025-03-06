@@ -1,32 +1,50 @@
 # Overview
 
-This github-action can be used to validate Victoria 3 mod files using [ck3-tiger](https://github.com/amtep/ck3-tiger).
+This GitHub Action can be used to validate Victoria 3 mod files using [ck3-tiger](https://github.com/amtep/ck3-tiger).
 
 ck3-tiger is developed by [amtep](https://github.com/amtep).
 
-**NOTE: This action is incomplete and needs to be set up before it can be used.
-This is because of copyright issues with publishing game files on the internet.
-Publishing the github-action with game files amounts to PIRACY!**
+> **NOTE:** This action is incomplete and needs to be set up before it can be used. This is because of copyright issues with publishing game files on the internet. Publishing the GitHub Action with game files amounts to **PIRACY!**
 
 ## Setup
-To set this github-action up for yourself, you will need to do the following steps:
 
- - First, you need to download the repository as a whole
- - Next, create a new **PRIVATE** repository on GitHub and upload the downloaded files into it
- - Then you copy the whole of your own game files into the `vic3` or `ck3` (depending on which game you want to validate) folder
- - So you do not need to upload all game files, you will then need to run the [clean-vic3.sh](clean-vic3.sh) or [clean-ck3.sh](clean-ck3.sh) script (On windows I recommend using WSL)
- - Finally, you can commit and push the stripped down game files into your **PRIVATE** repository
+To set this GitHub Action up for yourself, you will need to do the following steps:
+
+1. **Download the Repository**
+   - First, download the repository as a whole.
+  
+2. **Create a New PRIVATE Repository**
+   - Create a new **PRIVATE** repository on GitHub and upload the downloaded files into it.
+  
+3. **Copy Game Files**
+   - Copy the whole of your own game files into the `vic3` or `ck3` (depending on which game you want to validate) folder.
+  
+4. **Clean Game Files**
+   - So you do not need to upload all game files, run the [clean-vic3.sh](clean-vic3.sh) or [clean-ck3.sh](clean-ck3.sh) script (On Windows, I recommend using WSL).
+  
+5. **Commit and Push**
+   - Finally, commit and push the stripped-down game files into your **PRIVATE** repository.
+   - **Optional Step: Use `add_files.sh` to Commit and Push Files**
+     - If you have a large number of files (CK3 is >30k files) to commit and push, use the `add_files.sh` script to make it easier. This script commits a maximum of 100 files at a time and ensures that each commit does not exceed 100 Mb to avoid timeout issues.
 
 ## Usage
-To use the github-action in another of your repositories, you will need to do the following steps:
 
- - First, you will need to create an access token for the repository this [guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) can help you. I recommend using a fine-grained token that can only access the repositories' contents as read-only.
- - Then you need to add the token to your mod repository as a workflow secret like described in this [guide](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
- - Lastly, you will need to set up the validation as workflow. Here is an [example](https://github.com/kaiser-chris/gate-mod/blob/master/.github/workflows/validate.yml) from my own mod where I run the validation on pull-requests and on commits on master. The Community Mod Framework part is an example of how to work with dependencies
+To use the GitHub Action in another of your repositories, you will need to do the following steps:
+
+1. **Create an Access Token**
+   - Create an access token for the repository. This [guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) can help you. I recommend using a fine-grained token that can only access the repositories' contents as read-only.
+  
+2. **Add Token to Mod Repository**
+   - Add the token to your mod repository as a workflow secret like described in this [guide](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions).
+
+3. **Set Up Validation Workflow**
+   - Set up the validation as a workflow. Here is an [example](https://github.com/kaiser-chris/gate-mod/blob/master/.github/workflows/validate.yml) from my own mod where I run the validation on pull requests and on commits on the master branch. The Community Mod Framework part is an example of how to work with dependencies.
 
 ## Example Workflow
+
 This example validates every pull request and commits into the main branch:
-```
+
+```yaml
 name: Validation
 permissions:
   contents: read
@@ -65,4 +83,3 @@ jobs:
           mod-directory: 'mod'
           action-directory: 'validation'
           game: 'vic3' # Also supports ck3
-```
