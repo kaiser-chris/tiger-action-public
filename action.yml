@@ -17,9 +17,23 @@ inputs:
     options:
       - ck3
       - vic3
+  update-tiger:
+    description: 'Activate whether tiger should check for an update before running'
+    required: false
+    default: 'false'
+    type: choice
+    options:
+      - true
+      - false
 runs:
   using: "composite"
   steps:
+    - name: Update Tiger
+      if: ${{ inputs.update-tiger == 'true' }}
+      run: |
+        ${{ inputs.action-directory }}/tiger/ck3-tiger update
+        ${{ inputs.action-directory }}/tiger/vic3-tiger update
+      shell: sh
     - name: Validate Mod
       run: ${{ inputs.action-directory }}/validate.sh ${{ inputs.mod-directory }} ${{ inputs.action-directory }} ${{ inputs.game }}
       shell: sh
