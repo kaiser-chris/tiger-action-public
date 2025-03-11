@@ -1,6 +1,6 @@
 # Overview
 
-This GitHub Action can be used to validate Victoria 3 mod files using [ck3-tiger](https://github.com/amtep/ck3-tiger).
+This GitHub Action can be used to validate Victoria 3 and Crusader Kings 3 mod files using [ck3-tiger](https://github.com/amtep/ck3-tiger).
 
 ck3-tiger is developed by [amtep](https://github.com/amtep).
 
@@ -41,7 +41,7 @@ To use the GitHub Action in another of your repositories, you will need to do th
    - Set up the validation as a workflow. Here is an [example](https://github.com/kaiser-chris/gate-mod/blob/master/.github/workflows/validate.yml) from my own mod where I run the validation on pull requests and on commits on the master branch. The Community Mod Framework part is an example of how to work with dependencies.
 
 ## Action Parameters
- - `mod-directory`: Defines where your mod located inside the repository (Default: `.`)
+ - `mod-directory`: Defines where your mod is located inside the repository (Default: `.`)
  - `action-directory`: Defines where this action is located inside the repository (Default: `.`)
  - `game`: Defines game used to verify (Default: `vic3`)
    - `vic3`: Victoria 3
