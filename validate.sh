@@ -36,45 +36,8 @@ fi
 if [ -s result ]
 then
   cat result
-  echo " "
-  echo "${F_BOLD}Overview:${NO_FORMAT}"
 
-  if [ "$tips" -gt 0 ]
-  then
-    echo " - ${F_BOLD}$tips${NO_FORMAT} tips"
-  else
-    echo " - ${F_BOLD}no${NO_FORMAT} tips"
-  fi
-
-  if [ "$untidy" -gt 0 ]
-  then
-    echo " - ${F_BOLD}$untidy${NO_FORMAT} untidy hints"
-  else
-    echo " - ${F_BOLD}no${NO_FORMAT} untidy hints"
-  fi
-
-  if [ "$warnings" -gt 0 ]
-  then
-    echo " - ${F_BOLD}$warnings${NO_FORMAT} warnings"
-  else
-    echo " - ${F_BOLD}no${NO_FORMAT} warnings"
-  fi
-
-  if [ "$errors" -gt 0 ]
-  then
-    echo " - ${F_BOLD}$errors${NO_FORMAT} errors"
-  else
-    echo " - ${F_BOLD}no${NO_FORMAT} errors"
-  fi
-
-  if [ "$fatal" -gt 0 ]
-  then
-    echo " - ${F_BOLD}$fatal${NO_FORMAT} fatal errors"
-  else
-    echo " - ${F_BOLD}no${NO_FORMAT} errors"
-  fi
-
-  if [ "$warnings" -gt 0 ] || [ "$errors" -gt 0 ] || [ "$fatal" -gt 0 ]
+  if [ "$warnings" -gt 1 ] || [ "$errors" -gt 1 ] || [ "$fatal" -gt 1 ]
   then
     echo " "
     echo "${F_BOLD}${C_RED}There are warnings or errors. The validation failed!${NO_FORMAT}"
